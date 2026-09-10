@@ -1237,13 +1237,13 @@ button, input, select, textarea {
    全站文字即時修改系統 (Live In-Place Edit Mode)
    ========================================================================== */
 
-/* 浮動工具列 */
+/* 浮動工具列：一般訪客預設完全隱藏，只有管理員能看見 */
 .live-editor-bar {
+  display: none;
   position: fixed;
   bottom: 24px;
   right: 24px;
   z-index: 3000;
-  display: flex;
   align-items: center;
   gap: 10px;
   background: rgba(20, 33, 23, 0.94);
@@ -1255,6 +1255,10 @@ button, input, select, textarea {
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
   color: #FFFFFF;
   transition: all 0.3s ease;
+}
+
+body.admin-authenticated .live-editor-bar {
+  display: flex;
 }
 
 .editor-toggle-btn {

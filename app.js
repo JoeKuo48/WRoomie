@@ -569,4 +569,71 @@ document.addEventListener('DOMContentLoaded', () => {
   if (downloadBtn) {
     downloadBtn.addEventListener('click', downloadUpdatedHTML);
   }
+
+  // 綁定退出管理員按鈕
+  const logoutBtn = document.getElementById('logoutAdminBtn');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', lockAdmin);
+  }
+
+  // 檢查管理員身分
+  checkAdminAuth();
+});
+
+// ==========================================================================
+// 管理員專屬權限控制 (Admin Access Control)
+// 確保一般訪客完全看不到編輯按鈕，只有您驗證通過後才能開啟編輯
+// ==========================================================================
+const ADMIN_PASSWORD = 'wroomie'; // 專屬密碼，可隨時更改
+
+function checkAdminAuth() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const hasAdminQuery = urlParams.has('admin') || urlParams.has('edit') || window.location.hash === '#admin';
+  const isSavedAdmin = localStorage.getItem('wroomie_admin_auth') === 'true';
+
+  if (isSavedAdmin) {
+    unlockAdmin();
+  } else if (hasAdminQuery) {
+    promptAdminPassword();
+  }
+}
+
+window.promptAdminPassword = function() {
+  const input = prompt('🔐 請輸入微倫米管理員密碼（預設為 wroomie）：', '');
+  if (input === ADMIN_PASSWORD) {
+    localStorage.setItem('wroomie_admin_auth', 'true');
+    unlockAdmin();
+    alert('✅ 驗證成功！已為您解鎖專屬文字編輯工具列。');
+  } else if (input !== null) {
+    alert('❌ 密碼不正確，僅供主廚管理員使用。');
+  }
+};
+
+function unlockAdmin() {
+  document.body.classList.add('admin-authenticated');
+  const bar = document.getElementById('liveEditorBar');
+  if (bar) bar.style.display = 'flex';
+}
+
+function lockAdmin() {
+  localStorage.removeItem('wroomie_admin_auth');
+  document.body.classList.remove('admin-authenticated');
+  setEditMode(false);
+  const bar = document.getElementById('liveEditorBar');
+  if (bar) bar.style.display = 'none';
+  alert('🔒 已退出管理模式，切換為一般訪客視角！');
+}
+
+// 快捷鍵支援：隨時按下 Ctrl + Shift + E 即可呼叫密碼輸入
+window.addEventListener('keydown', (e) => {
+  if (e.ctrlKey && e.shiftKey && (e.key === 'E' || e.key === 'e')) {
+    e.preventDefault();
+    if (localStorage.getItem('wroomie_admin_auth') === 'true') {
+      if (confirm('是否要登出管理模式並隱藏編輯工具？')) {
+        lockAdmin();
+      }
+    } else {
+      window.promptAdminPassword();
+    }
+  }
 });
