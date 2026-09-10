@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>WRoomie - Slide 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Noto+Serif+TC:wght@400;500;600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    width: 1080px;
+    height: 1350px;
+    background-color: #FAF7F2;
+    background-image: radial-gradient(rgba(188, 90, 54, 0.04) 1px, transparent 1px), radial-gradient(rgba(45, 39, 33, 0.03) 1px, #FAF7F2 1px);
+    background-size: 36px 36px;
+    background-position: 0 0, 18px 18px;
+    font-family: 'Noto Serif TC', serif;
+    color: #2D2721;
+    overflow: hidden;
+    position: relative;
+    padding: 72px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .frame-border {
+    position: absolute;
+    top: 32px;
+    left: 32px;
+    right: 32px;
+    bottom: 32px;
+    border: 1px solid rgba(188, 90, 54, 0.22);
+    pointer-events: none;
+    z-index: 100;
+  }
+  .frame-border::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    border: 1px solid rgba(45, 39, 33, 0.08);
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(188, 90, 54, 0.18);
+    padding-bottom: 22px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .brand-logo {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .brand-logo .eng {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: #BC5A36;
+  }
+
+  .brand-logo .slash {
+    color: #D4C8B8;
+    font-weight: 300;
+    font-size: 20px;
+  }
+
+  .brand-logo .cht {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: #554D44;
+  }
+
+  .slide-tag {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: #8C8275;
+    text-transform: uppercase;
+    background: #F0EAE1;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid #E2D7C7;
+  }
+
+  .content-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+    padding: 20px 0;
+  }
+
+  .watermark-symbol {
+    position: absolute;
+    right: -20px;
+    top: 20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 240px;
+    font-weight: 700;
+    color: rgba(188, 90, 54, 0.05);
+    line-height: 0.8;
+    user-select: none;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .cover-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #BC5A36;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background: #F3ECE1;
+    border: 1px solid #DFD3C3;
+    padding: 8px 22px;
+    border-radius: 20px;
+    margin-bottom: 36px;
+    width: fit-content;
+  }
+
+  .cover-badge::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #BC5A36;
+  }
+
+  .hero-quote {
+    font-size: 64px;
+    font-weight: 900;
+    line-height: 1.35;
+    color: #241E18;
+    letter-spacing: 2px;
+    margin-bottom: 34px;
+  }
+
+  .hero-quote span {
+    color: #BC5A36;
+    font-style: italic;
+  }
+
+  .cover-desc {
+    font-size: 24px;
+    line-height: 2.1;
+    color: #554D44;
+    letter-spacing: 1px;
+    margin-bottom: 48px;
+    max-width: 840px;
+  }
+
+  .divider-accent {
+    width: 60px;
+    height: 3px;
+    background: #BC5A36;
+    margin-bottom: 44px;
+    border-radius: 2px;
+  }
+
+  .author-card {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    background: #FFFFFF;
+    border: 1px solid #E8E0D2;
+    padding: 24px 34px;
+    border-radius: 16px;
+    width: fit-content;
+    box-shadow: 0 8px 28px rgba(45, 39, 33, 0.05);
+  }
+
+  .author-avatar {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #BC5A36 0%, #983F20 100%);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    font-weight: 700;
+    box-shadow: 0 4px 14px rgba(188, 90, 54, 0.35);
+  }
+
+  .author-info h4 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #241E18;
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+  }
+
+  .author-info p {
+    font-size: 15px;
+    color: #8C8275;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: 1px;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(188, 90, 54, 0.18);
+    padding-top: 22px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .footer-left {
+    font-size: 14px;
+    color: #8C8275;
+    letter-spacing: 1.5px;
+    font-family: 'Noto Serif TC', serif;
+  }
+
+  .swipe-hint {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #BC5A36;
+    letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+  <div class="frame-border"></div>
+
+  <div class="header">
+    <div class="brand-logo">
+      <span class="eng">WRoomie</span>
+      <span class="slash">|</span>
+      <span class="cht">料理</span>
+    </div>
+    <div class="slide-tag">Brand Story 01/05</div>
+  </div>
+
+  <div class="content-main">
+    <div class="watermark-symbol">W</div>
+    <div class="cover-badge">Brand Story · 品牌故事</div>
+    <h1 class="hero-quote">「透過料理，<br><span>遊歷世界</span>。」</h1>
+    <div class="divider-accent"></div>
+    <p class="cover-desc">
+      從台北深夜的後場廚房，到高雄陽光下的風土餐桌。<br>
+      這是一個文組大學生，把旅行記憶與世界美味<br>
+      帶進生活與每一張餐桌的真實歷程。
+    </p>
+
+    <div class="author-card">
+      <div class="author-avatar">J</div>
+      <div class="author-info">
+        <h4>嗨，我是 Joe。</h4>
+        <p>WRoomie Founder & Culinary Creator</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">WRoomie ｜ 探索風味的下一站</div>
+    <div class="swipe-hint">SWIPE ➔</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【微倫米 WRoomie】以料理作為文化交流媒介，在高雄展開你的一日室友食旅</title>
+  
+  <!-- SEO & Social Meta -->
+  <meta name="description" content="微倫米 WRoomie 帶領外國旅人走入市場與共食，將台灣飲食文化轉譯為深度體驗。美式貨櫃私廚空間、傳統市場尋味、南台灣風土饗宴。">
+  <meta property="og:title" content="【微倫米 WRoomie】在高雄展開你的一日室友食旅">
+  <meta property="og:description" content="用料理，結交一個高雄在地室友。走入傳統市場、貨櫃私廚手作、圍桌共食溫馨交流。">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts: 襯線與手作質感英文字型 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,600&family=Noto+Serif+TC:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- 官方樣式表 -->
+  <link rel="stylesheet" href="style.css?v=green">
+</head>
+<body>
+
+  <!-- 即時編輯模式提示橫條 (開啟編輯時顯示) -->
+  <div class="edit-mode-banner" id="editModeBanner">
+    ✏️ 您已進入【文字即時編輯模式】！直接點擊網頁上任意文字即可打字修改，修改內容將自動儲存。
+  </div>
+
+  <!-- 頂部導覽列 (Sticky Navigation) -->
+  <header class="site-nav" id="siteNav">
+    <div class="container nav-container">
+      <a href="#" class="nav-brand">
+        <span class="brand-main">微倫米</span>
+        <span class="brand-en">WRoomie</span>
+        <span class="brand-sub">· 高雄在地食旅</span>
+      </a>
+
+      <!-- 電腦版連結 -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#chef" class="nav-link" data-edit="nav-meet">認識主廚</a></li>
+        <li><a href="#experiences" class="nav-link" data-edit="nav-experiences">食旅體驗</a></li>
+        <li><a href="#chef" class="nav-link" data-edit="nav-story">室友理念</a></li>
+        <li><a href="#booking" class="nav-link" data-edit="nav-book">立即預約</a></li>
+      </ul>
+
+      <!-- 語系與動作按鈕 -->
+      <div class="nav-actions">
+        <button class="lang-toggle" id="langToggleBtn" title="切換語言 / Switch Language">
+          🌐 <span>EN / 英文</span>
+        </button>
+        <a href="#booking" class="btn btn-primary" style="padding: 9px 18px; font-size: 0.88rem;" data-book-action="general" data-edit="nav-book">
+          立即預約
+        </a>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       區塊一：Hero 首屏吸睛區
+       ========================================================================== -->
+  <section class="hero-section" id="hero">
+    <div class="hero-backdrop-pattern"></div>
+    <div class="container">
+      <div class="hero-grid">
+        
+        <!-- 左側文案 -->
+        <div class="hero-content">
+          <div class="badge" data-edit="hero-badge">
+            <span class="badge-dot"></span>
+            KAOHSIUNG · LOCAL TASTE & ROOMIE FEAST
+          </div>
+
+          <h1 class="hero-title" data-edit="hero-title">
+            用料理，結交一個<span class="accent">高雄在地室友</span>
+          </h1>
+
+          <p class="hero-subtitle" data-edit="hero-subtitle">
+            微倫米 WRoomie 帶領外國旅人走入市場與共食，將台灣飲食文化轉譯為深度體驗。
+          </p>
+
+          <div class="hero-ctas">
+            <a href="#experiences" class="btn btn-primary" data-edit="hero-cta-explore">
+              探索體驗行程 ➔
+            </a>
+            <a href="#chef" class="btn btn-secondary" data-edit="hero-cta-chef">
+              認識主廚 Joe
+            </a>
+          </div>
+
+          <!-- 亮點特點標籤 -->
+          <div class="hero-features-bar">
+            <div class="hero-feature-item">
+              <span class="hero-feature-icon">✦</span>
+              <span data-edit="hero-feat-market">傳統市井尋味導覽</span>
+            </div>
+            <div class="hero-feature-item">
+              <span class="hero-feature-icon">✦</span>
+              <span data-edit="hero-feat-diner">美式貨櫃私廚空間</span>
+            </div>
+            <div class="hero-feature-item">
+              <span class="hero-feature-icon">✦</span>
+              <span data-edit="hero-feat-feast">南台灣在地風土共食</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右側視覺相片卡 -->
+        <div class="hero-visual-card">
+          <div class="hero-main-photo-frame">
+            <img src="images/food_1.jpg" alt="微倫米 經典料理與共食氛圍">
+            <div class="hero-photo-tag">
+              <h4 data-edit="hero-photo-title">Golden Corn Diner 貨櫃廚房</h4>
+              <p data-edit="hero-photo-desc">溫暖手作 × 美式工業風 × 一日室友歡聚</p>
+            </div>
+          </div>
+
+          <!-- 浮動小徽章 -->
+          <div class="hero-floating-badge">
+            <div class="floating-badge-icon">🍳</div>
+            <div class="floating-badge-text">
+              <div class="title" data-edit="hero-badge-title">一日室友深度食旅</div>
+              <div class="subtitle" data-edit="hero-badge-sub">市場尋味 × 貨櫃廚房 × 風土共食</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       區塊二：Meet the Chef 主廚介紹區
+       ========================================================================== -->
+  <section class="section section-alt" id="chef">
+    <div class="container">
+      
+      <div class="chef-grid">
+        
+        <!-- 左側主廚工作形象照 -->
+        <div class="chef-photo-wrapper">
+          <div class="chef-photo-card">
+            <div class="chef-photo-inner">
+              <img src="images/chef_joe.jpg" alt="微倫米主理人 Chef Joe 專注料理">
+            </div>
+            <div class="chef-profile-card">
+              <div class="chef-titles">
+                <h4 data-edit="chef-title-role">微倫米 WRoomie 負責人</h4>
+                <p data-edit="chef-title-sub">Golden Corn Diner & roomie_club48 主理人</p>
+              </div>
+              <div class="chef-seal-badge" data-edit="chef-seal">
+                CHEF JOE
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右側主廚背景與理念文字 -->
+        <div class="chef-details">
+          
+          <div>
+            <div class="badge badge-olive" data-edit="chef-section-badge">
+              <span class="badge-dot"></span>
+              MEET THE CHEF & DAY ROOMIE
+            </div>
+            <h2 class="chef-section-title" data-edit="chef-section-title">
+              認識你的主廚與一日室友 —— <span class="highlight">Chef Joe</span>
+            </h2>
+          </div>
+
+          <div class="chef-story-block">
+            
+            <!-- 經歷背景 -->
+            <div class="chef-card-item">
+              <div class="item-title">
+                <span class="icon">🔪</span>
+                <span data-edit="chef-exp-title">經歷背景</span>
+              </div>
+              <p data-edit="chef-exp-p">
+                微倫米負責人、Golden Corn Diner 與 roomie_club48 主理人。曾任職於 Fridays、多間獨立小餐廳，以及遊戲公司普橘島特約私廚。
+              </p>
+            </div>
+
+            <!-- 初心與使命 -->
+            <div class="chef-card-item">
+              <div class="item-title">
+                <span class="icon">🌱</span>
+                <span data-edit="chef-origin-title">初心與使命</span>
+              </div>
+              <p data-edit="chef-origin-p">
+                從台北回到高雄，曾參與 homeveler 家廚活動。當看到外國旅人理解台灣南部特色物產與食物時，那份快樂與榮幸，是創辦微倫米的初衷。
+              </p>
+            </div>
+
+            <!-- 品牌精神 -->
+            <div class="chef-card-item">
+              <div class="item-title">
+                <span class="icon">✨</span>
+                <span data-edit="chef-spirit-title">品牌精神</span>
+              </div>
+              <p data-edit="chef-spirit-p">
+                「微」是透過生活細節觀察，創造深度連結；「倫米」則是延續 Roomie 的意義——大家來當我的一日室友，共樂、共遊、共食。
+              </p>
+            </div>
+
+          </div>
+
+          <!-- 主廚金句名言 -->
+          <div class="chef-quote-box">
+            <p class="quote-p" data-edit="chef-quote">
+              「下廚可以很簡單，探索世界不一定要從登機開始。透過料理，我們也可以遊歷世界。」
+            </p>
+            <div class="quote-author" data-edit="chef-quote-author">
+              — Chef Joe，微倫米主理人
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       區塊三：Experience Lineup 三階段食旅產品線
+       ========================================================================== -->
+  <section class="section" id="experiences">
+    <div class="container">
+      
+      <!-- 區塊標題 -->
+      <div class="section-header">
+        <div class="badge" data-edit="exp-badge">
+          <span class="badge-dot"></span>
+          OUR EXPERIENCES
+        </div>
+        <h2 class="section-title" data-edit="exp-title">
+          選擇你的 <span class="highlight">WRoomie 室友食旅</span>
+        </h2>
+        <p class="section-subtitle" data-edit="exp-subtitle">
+          由淺入深的三種探索方式，依你的旅行節奏挑選專屬的私廚手作與在地漫遊
+        </p>
+      </div>
+
+      <!-- 3 張並排體驗卡片 -->
+      <div class="experience-grid">
+        
+        <!-- 卡片 1：輕度版 -->
+        <div class="experience-card">
+          <div class="card-image-box">
+            <img src="images/food_1.jpg" alt="一日室友的私廚餐桌">
+            <span class="card-tier-pill" data-edit="card1-tier">輕度版 · 經典手作</span>
+          </div>
+          <div class="card-body">
+            <div class="card-meta-bar">
+              <div class="meta-duration">
+                <span>⏱</span> <span data-edit="card1-duration">約 2.5 - 3 小時</span>
+              </div>
+              <div data-edit="card1-people">4 - 8 人小班體驗</div>
+            </div>
+
+            <h3 class="card-title" data-edit="card1-title">【微倫米】一日室友的私廚餐桌</h3>
+            <div class="card-en-title" data-edit="card1-en">Roomie’s Table</div>
+
+            <div class="card-target-box">
+              <strong data-edit="card1-target-label">適合對象：</strong>
+              <span data-edit="card1-target-text">行程較趕、想輕鬆體驗手作料理與溫馨交流的旅人。</span>
+            </div>
+
+            <p class="card-description" data-edit="card1-desc">
+              直接來到溫馨的 Golden Corn Diner 美式貨櫃屋空間，跟著主廚 Joe 動手做經典或具台灣特色的創意料理，最後圍坐在一起像老朋友般共食交流。
+            </p>
+
+            <div class="card-footer">
+              <button class="btn btn-outline-forest" data-book-action="package1" data-edit="card1-btn">
+                查看詳情與預約
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 卡片 2：中度版 (精選推薦) -->
+        <div class="experience-card featured">
+          <span class="card-top-tag" data-edit="card2-tag">人氣推薦 POPULAR</span>
+          <div class="card-image-box">
+            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80" alt="跟著室友去買菜 高雄傳統市場尋味">
+            <span class="card-tier-pill" data-edit="card2-tier">中度版 · 市井探索</span>
+          </div>
+          <div class="card-body">
+            <div class="card-meta-bar">
+              <div class="meta-duration">
+                <span>⏱</span> <span data-edit="card2-duration">約 4 - 4.5 小時</span>
+              </div>
+              <div data-edit="card2-people">2 - 6 人深度小團</div>
+            </div>
+
+            <h3 class="card-title" data-edit="card2-title">【微倫米】跟著室友去買菜</h3>
+            <div class="card-en-title" data-edit="card2-en">Market & Kitchen with Roomie</div>
+
+            <div class="card-target-box">
+              <strong data-edit="card2-target-label">適合對象：</strong>
+              <span data-edit="card2-target-text">熱愛深度文化探索、想貼近在地常民生活的旅人。</span>
+            </div>
+
+            <p class="card-description" data-edit="card2-desc">
+              由主廚 Joe 帶領穿梭高雄傳統市場，解密南台灣獨特物產與人情味；回到貨櫃屋將剛買的新鮮食材親手烹調成美味家常菜，享受溫馨共食時光。
+            </p>
+
+            <!-- 行程亮點時間軸 -->
+            <div class="card-timeline">
+              <div class="timeline-heading">
+                <span>📍</span> <span data-edit="card2-tl-title">行程亮點時刻表</span>
+              </div>
+              <ul class="timeline-list">
+                <li class="timeline-item">
+                  <span class="timeline-time" data-edit="card2-tl-1-time">09:30 - 09:45</span>
+                  <span class="timeline-text" data-edit="card2-tl-1-text">捷運站相見歡與破冰</span>
+                </li>
+                <li class="timeline-item">
+                  <span class="timeline-time" data-edit="card2-tl-2-time">09:45 - 11:00</span>
+                  <span class="timeline-text" data-edit="card2-tl-2-text">【市井尋味】傳統市場探險與食材導覽</span>
+                </li>
+                <li class="timeline-item">
+                  <span class="timeline-time" data-edit="card2-tl-3-time">11:00 - 12:30</span>
+                  <span class="timeline-text" data-edit="card2-tl-3-text">【手作廚房】貨櫃屋料理實作教學</span>
+                </li>
+                <li class="timeline-item">
+                  <span class="timeline-time" data-edit="card2-tl-4-time">12:30 - 14:00</span>
+                  <span class="timeline-text" data-edit="card2-tl-4-text">【室友餐桌】圍桌共食與文化交流時光</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="card-footer">
+              <button class="btn btn-primary" data-book-action="package2" data-edit="card2-btn">
+                查看詳情與預約
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 卡片 3：升級版 -->
+        <div class="experience-card">
+          <div class="card-image-box">
+            <img src="images/food_2.jpg" alt="南台灣風土尋味行">
+            <span class="card-tier-pill" data-edit="card3-tier">升級版 · 風土盛宴</span>
+          </div>
+          <div class="card-body">
+            <div class="card-meta-bar">
+              <div class="meta-duration">
+                <span>⏱</span> <span data-edit="card3-duration">約 6 - 7 小時 (半日遊)</span>
+              </div>
+              <div data-edit="card3-people">專屬包場 / 預約制</div>
+            </div>
+
+            <h3 class="card-title" data-edit="card3-title">【微倫米】南台灣風土尋味行</h3>
+            <div class="card-en-title" data-edit="card3-en">Southern Taiwan Terroir & Feast</div>
+
+            <div class="card-target-box">
+              <strong data-edit="card3-target-label">適合對象：</strong>
+              <span data-edit="card3-target-text">追求永續旅遊（Sustainable Tourism）、喜愛慢食與生態探訪的高端旅人。</span>
+            </div>
+
+            <p class="card-description" data-edit="card3-desc">
+              走訪高雄在地農場或魚塭，由生產者親自導覽認識南台灣農漁業；順道走訪市場採買，最後回到貨櫃屋，將風土精華烹調成一桌充滿南部靈魂的料理。
+            </p>
+
+            <div class="card-footer">
+              <button class="btn btn-outline-forest" data-book-action="package3" data-edit="card3-btn">
+                查看詳情與預約
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       區塊四：Call to Action / Booking Section（底部預約轉換區）
+       ========================================================================== -->
+  <section class="cta-section" id="booking">
+    <div class="cta-backdrop-glow"></div>
+    <div class="container">
+      
+      <div class="cta-box">
+        <div class="badge" style="background: rgba(61, 122, 75, 0.28); border-color: rgba(61, 122, 75, 0.5); color: #9AE6AA;" data-edit="cta-badge">
+          <span class="badge-dot"></span>
+          RESERVE YOUR SEAT
+        </div>
+
+        <h2 class="cta-title" data-edit="cta-title">
+          準備好成為彼此的<span>一日室友</span>了嗎？
+        </h2>
+
+        <p class="cta-subtitle" data-edit="cta-subtitle">
+          名額有限，跟著主廚 Joe 一起展開一場有溫度的南台灣料理食旅吧！
+        </p>
+
+        <div class="cta-buttons-group">
+          <button class="btn btn-primary" style="padding: 15px 36px; font-size: 1.05rem;" data-book-action="general" data-edit="cta-btn-book">
+            立即預約體驗 (Book Now)
+          </button>
+          <button class="btn btn-secondary" style="padding: 15px 32px;" onclick="window.openBookingModal('custom')" data-edit="cta-btn-contact">
+            聯絡我們 / 洽詢客製 (Contact Us)
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       頁尾 (Footer)
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <div class="footer-brand">
+          <h3 data-edit="footer-brand-title">微倫米 WRoomie</h3>
+          <p data-edit="footer-brand-desc">
+            以料理作為文化交流媒介，在高雄展開你的一日室友食旅。連結產地、市井常民與老朋友般的溫暖餐桌。
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-edit="footer-loc-title">在地座標</h4>
+          <p style="margin-bottom: 8px;" data-edit="footer-loc-text">
+            台灣高雄市 · Golden Corn Diner 美式貨櫃廚房
+          </p>
+          <p style="font-size: 0.85rem; color: #756D65;">
+            捷運沿線便利集合 · 私廚專屬時段
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-edit="footer-social-title">追蹤室友生活</h4>
+          <ul>
+            <li><a href="https://www.instagram.com/roomie_club48" target="_blank" rel="noopener">📸 Instagram: @roomie_club48</a></li>
+            <li><a href="https://www.instagram.com" target="_blank" rel="noopener">🍴 Golden Corn Diner</a></li>
+            <li><a href="#booking" data-book-action="custom">✉️ 預約諮詢專線</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p data-edit="footer-copy">
+          © 2026 微倫米 WRoomie. All rights reserved. 用料理在餐桌上漫遊世界。
+        </p>
+        <div style="font-size: 0.8rem; color: #756D65;">
+          Made with warmth in Kaohsiung, Taiwan
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       互動預約彈窗 (Booking Modal)
+       ========================================================================== -->
+  <div class="modal-overlay" id="bookingModal">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="closeModalBtn" aria-label="關閉預約彈窗">×</button>
+
+      <!-- 表單本體 -->
+      <div id="bookingFormContent">
+        <div class="modal-header">
+          <h3>預約你的室友食旅</h3>
+          <p>請填寫下方資訊，主廚 Joe 將在 24 小時內與您確認檔期與細節。</p>
+        </div>
+
+        <form id="bookingForm">
+          <div class="form-group">
+            <label for="bookingPackage">選擇食旅體驗方案 *</label>
+            <select id="bookingPackage" class="form-select" required>
+              <option value="package2" selected>【中度版】跟著室友去買菜 (Market & Kitchen with Roomie · 4~4.5小時)</option>
+              <option value="package1">【輕度版】一日室友的私廚餐桌 (Roomie’s Table · 2.5~3小時)</option>
+              <option value="package3">【升級版】南台灣風土尋味行 (Southern Taiwan Terroir & Feast · 6~7小時)</option>
+              <option value="custom">【專屬客製】私人包場 / 特殊團體需求</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="bookName">旅人姓名 / Name *</label>
+              <input type="text" id="bookName" class="form-input" placeholder="例如：Alex Chen" required>
+            </div>
+            <div class="form-group">
+              <label for="bookGuests">預約人數 / Guests *</label>
+              <select id="bookGuests" class="form-select">
+                <option value="1">1 位</option>
+                <option value="2" selected>2 位</option>
+                <option value="3">3 位</option>
+                <option value="4">4 位</option>
+                <option value="5-8">5 - 8 位 (建議包場)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="bookEmail">電子郵件 / Email *</label>
+              <input type="email" id="bookEmail" class="form-input" placeholder="alex@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="bookPhone">LINE / WhatsApp / 電話 *</label>
+              <input type="text" id="bookPhone" class="form-input" placeholder="您的常用聯繫方式" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="bookDate">期望預約日期 / Preferred Date *</label>
+            <input type="date" id="bookDate" class="form-input" required>
+          </div>
+
+          <div class="form-group">
+            <label for="bookNotes">飲食偏好 / 過敏限制 / 想聊的料理文化</label>
+            <textarea id="bookNotes" class="form-textarea" rows="3" placeholder="例如：不吃牛、海鮮過敏、或是想多學台式家常三杯雞作法..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary form-submit-btn">
+            確認送出預約申請 ➔
+          </button>
+        </form>
+      </div>
+
+      <!-- 送出成功提示畫面 -->
+      <div class="booking-success-box" id="bookingSuccessBox">
+        <div class="success-icon">🎉</div>
+        <h4>預約申請已順利送出！</h4>
+        <p>
+          親愛的 <strong id="successGuestName">旅人</strong>，感謝您預約<br>
+          <span id="successPkgName" style="color: var(--color-terracotta); font-weight: 700;"></span>！<br>
+          主廚 Joe 將盡快透過您的 Email 或通訊軟體回覆確認信件。
+        </p>
+        <button class="btn btn-secondary" onclick="window.closeBookingModal()">
+          返回網頁
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       全站文字即時修改浮動工具列 (Live In-Place Edit Floating Bar)
+       ========================================================================== -->
+  <div class="live-editor-bar" id="liveEditorBar">
+    <button class="editor-toggle-btn" id="editorToggleBtn" title="點擊切換編輯模式，可在網頁上直接打字修改文字">
+      <span>✏️ 開啟文字編輯模式</span>
+    </button>
+    <div class="editor-actions">
+      <button class="editor-action-btn" id="downloadHtmlBtn" title="將所有修改直接下載為完整 HTML 網頁">
+        💾 下載更新網頁
+      </button>
+      <button class="editor-action-btn" id="exportJsonBtn" title="複製全站文案 JSON 設定">
+        📋 複製文案
+      </button>
+      <button class="editor-action-btn" id="resetDefaultsBtn" title="恢復官方原始預設文字">
+        🔄 重設
+      </button>
+    </div>
+    <span class="editor-status" id="editorStatus">✓ 已自動儲存</span>
+  </div>
+
+  <!-- 互動腳本 -->
+  <script src="app.js?v=green"></script>
+</body>
+</html>

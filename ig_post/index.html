@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WRoomie｜料理 - IG 宣傳圖預覽與下載</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Noto+Serif+TC:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-primary: #181513;
+    --bg-surface: #24201D;
+    --bg-card: #FAF7F2;
+    --brand-terracotta: #BC5A36;
+    --brand-terracotta-hover: #A04727;
+    --brand-olive: #5A6B53;
+    --text-light: #F5F3EF;
+    --text-muted: #A39B92;
+    --border-color: #38332E;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-light);
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", sans-serif;
+    min-height: 100vh;
+    padding: 36px 20px 80px;
+    line-height: 1.5;
+  }
+
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto 36px;
+    text-align: center;
+  }
+
+  .brand-badge {
+    display: inline-block;
+    background: rgba(188, 90, 54, 0.18);
+    color: #E68868;
+    border: 1px solid rgba(188, 90, 54, 0.35);
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 40px;
+    font-weight: 900;
+    color: #FFFFFF;
+    margin-bottom: 12px;
+    letter-spacing: 1.5px;
+  }
+
+  h1 span {
+    color: #E68868;
+    font-style: italic;
+  }
+
+  .subtitle {
+    color: var(--text-muted);
+    font-size: 16px;
+    margin-bottom: 28px;
+    font-weight: 400;
+  }
+
+  /* View Mode Toggle Bar */
+  .view-toggle-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+  }
+
+  .toggle-group {
+    background: var(--bg-surface);
+    padding: 4px;
+    border-radius: 30px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    gap: 4px;
+  }
+
+  .toggle-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .toggle-btn.active {
+    background: var(--brand-terracotta);
+    color: #FFFFFF;
+    box-shadow: 0 2px 10px rgba(188, 90, 54, 0.4);
+  }
+
+  .btn {
+    background: var(--bg-surface);
+    color: var(--text-light);
+    border: 1px solid var(--border-color);
+    padding: 9px 20px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn:hover {
+    background: #332D28;
+    border-color: #554D45;
+  }
+
+  .btn.btn-primary {
+    background: var(--brand-terracotta);
+    border-color: var(--brand-terracotta);
+    color: #FFFFFF;
+  }
+
+  .btn.btn-primary:hover {
+    background: var(--brand-terracotta-hover);
+  }
+
+  /* Carousel Section */
+  #carousel-view {
+    max-width: 580px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .carousel-screen {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background: #0C0A09;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  .carousel-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.3s ease;
+  }
+
+  .carousel-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 24px;
+    padding: 0 10px;
+  }
+
+  .nav-btn {
+    background: var(--bg-surface);
+    color: #FFFFFF;
+    border: 1px solid var(--border-color);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .nav-btn:hover {
+    background: var(--brand-terracotta);
+    border-color: var(--brand-terracotta);
+    transform: scale(1.05);
+  }
+
+  .indicators-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #443D36;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .dot.active {
+    width: 28px;
+    border-radius: 10px;
+    background: var(--brand-terracotta);
+  }
+
+  .slide-info-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    width: 100%;
+    padding: 20px 24px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .slide-info-text h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 4px;
+  }
+
+  .slide-info-text p {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  /* Grid of all slides */
+  #grid-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  .slide-card {
+    background: var(--bg-surface);
+    border-radius: 18px;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .slide-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 44px rgba(0,0,0,0.45);
+    border-color: #E68868;
+  }
+
+  .slide-card-header {
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .slide-card-title {
+    font-weight: 700;
+    font-size: 15px;
+    color: #E7E5E4;
+  }
+
+  .slide-number {
+    font-size: 12px;
+    color: #E68868;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+  }
+
+  .slide-preview-container {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background: #0C0A09;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide-preview-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .slide-card-footer {
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1C1917;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .slide-card-footer span {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .btn-download {
+    background: rgba(188, 90, 54, 0.2);
+    color: #E68868;
+    border: 1px solid rgba(188, 90, 54, 0.4);
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-download:hover {
+    background: var(--brand-terracotta);
+    color: #FFFFFF;
+  }
+</style>
+</head>
+<body>
+
+  <div class="header-container">
+    <div class="brand-badge">WRoomie ｜ Instagram Carousel Suite</div>
+    <h1>WRoomie 品牌故事 <span>· IG 文宣圖</span></h1>
+    <p class="subtitle">1080 × 1350 規格 (4:5 完美比例) ｜ 專為 Instagram 輪播貼文設計</p>
+
+    <div class="view-toggle-bar">
+      <div class="toggle-group">
+        <button class="toggle-btn active" id="btn-show-carousel" onclick="switchView('carousel')">📱 輪播視圖 (Carousel)</button>
+        <button class="toggle-btn" id="btn-show-grid" onclick="switchView('grid')">📑 5 頁總覽 (Grid)</button>
+      </div>
+      <a href="output/slide_1.png" download="WRoomie_01_Cover.png" class="btn btn-primary">下載第 1 頁</a>
+      <a href="output/slide_2.png" download="WRoomie_02_2012.png" class="btn btn-primary">下載第 2 頁</a>
+      <a href="output/slide_3.png" download="WRoomie_03_2022.png" class="btn btn-primary">下載第 3 頁</a>
+      <a href="output/slide_4.png" download="WRoomie_04_2026.png" class="btn btn-primary">下載第 4 頁</a>
+      <a href="output/slide_5.png" download="WRoomie_05_Vision.png" class="btn btn-primary">下載第 5 頁</a>
+    </div>
+  </div>
+
+  <!-- Carousel Mode -->
+  <div id="carousel-view">
+    <div class="carousel-screen">
+      <img src="output/slide_1.png" id="mainCarouselImg" class="carousel-img" alt="Slide Preview">
+    </div>
+
+    <div class="carousel-controls">
+      <button class="nav-btn" onclick="prevSlide()">❮</button>
+      <div class="indicators-row" id="dotsContainer">
+        <div class="dot active" onclick="goToSlide(1)"></div>
+        <div class="dot" onclick="goToSlide(2)"></div>
+        <div class="dot" onclick="goToSlide(3)"></div>
+        <div class="dot" onclick="goToSlide(4)"></div>
+        <div class="dot" onclick="goToSlide(5)"></div>
+      </div>
+      <button class="nav-btn" onclick="nextSlide()">❯</button>
+    </div>
+
+    <div class="slide-info-card">
+      <div class="slide-info-text">
+        <h3 id="slideInfoTitle">01 / 05 ｜ 封面：透過料理，遊歷世界</h3>
+        <p id="slideInfoDesc">品牌序章 · 嗨，我是 Joe</p>
+      </div>
+      <a href="output/slide_1.png" id="slideInfoDownload" download="WRoomie_Slide_1.png" class="btn-download">下載當前頁 ➔</a>
+    </div>
+  </div>
+
+  <!-- Grid Mode -->
+  <div id="grid-view" style="display: none;">
+
+    <!-- Slide 1 -->
+    <div class="slide-card">
+      <div class="slide-card-header">
+        <span class="slide-card-title">封面 ｜ 透過料理，遊歷世界</span>
+        <span class="slide-number">01 / 05</span>
+      </div>
+      <div class="slide-preview-container">
+        <img src="output/slide_1.png" alt="Slide 1">
+      </div>
+      <div class="slide-card-footer">
+        <span>品牌序章 · 嗨，我是 Joe</span>
+        <a href="output/slide_1.png" download="WRoomie_01_Cover.png" class="btn-download">下載 PNG ➔</a>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide-card">
+      <div class="slide-card-header">
+        <span class="slide-card-title">2012 ｜ 闖進廚房後場的起點</span>
+        <span class="slide-number">02 / 05</span>
+      </div>
+      <div class="slide-preview-container">
+        <img src="output/slide_2.png" alt="Slide 2">
+      </div>
+      <div class="slide-card-footer">
+        <span>文組生的大學轉折點</span>
+        <a href="output/slide_2.png" download="WRoomie_02_2012.png" class="btn-download">下載 PNG ➔</a>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide-card">
+      <div class="slide-card-header">
+        <span class="slide-card-title">2022 ｜ 成立 Roomie (一日室友)</span>
+        <span class="slide-number">03 / 05</span>
+      </div>
+      <div class="slide-preview-container">
+        <img src="output/slide_3.png" alt="Slide 3">
+      </div>
+      <div class="slide-card-footer">
+        <span>結合 2 張精緻美食照片</span>
+        <a href="output/slide_3.png" download="WRoomie_03_2022.png" class="btn-download">下載 PNG ➔</a>
+      </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide-card">
+      <div class="slide-card-header">
+        <span class="slide-card-title">2026 ｜ 回到高雄，重新認識料理</span>
+        <span class="slide-number">04 / 05</span>
+      </div>
+      <div class="slide-preview-container">
+        <img src="output/slide_4.png" alt="Slide 4">
+      </div>
+      <div class="slide-card-footer">
+        <span>結合 Joe 專注做菜照片</span>
+        <a href="output/slide_4.png" download="WRoomie_04_2026.png" class="btn-download">下載 PNG ➔</a>
+      </div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide-card">
+      <div class="slide-card-header">
+        <span class="slide-card-title">結尾 ｜ WRoomie 的理念與願景</span>
+        <span class="slide-number">05 / 05</span>
+      </div>
+      <div class="slide-preview-container">
+        <img src="output/slide_5.png" alt="Slide 5">
+      </div>
+      <div class="slide-card-footer">
+        <span>金句總結與關注號召</span>
+        <a href="output/slide_5.png" download="WRoomie_05_Vision.png" class="btn-download">下載 PNG ➔</a>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const slideData = [
+      { id: 1, title: "01 / 05 ｜ 封面：透過料理，遊歷世界", desc: "品牌序章 · 嗨，我是 Joe", file: "slide_1.png", name: "WRoomie_01_Cover.png" },
+      { id: 2, title: "02 / 05 ｜ 2012：闖入廚房後場的起點", desc: "普通文組生的料理志業轉折點", file: "slide_2.png", name: "WRoomie_02_2012.png" },
+      { id: 3, title: "03 / 05 ｜ 2022：成立 Roomie 一日室友", desc: "結合 2 張精緻美食料理照片", file: "slide_3.png", name: "WRoomie_03_2022.png" },
+      { id: 4, title: "04 / 05 ｜ 2026：回到高雄，重新認識料理", desc: "結合 Joe 專注做菜的照片", file: "slide_4.png", name: "WRoomie_04_2026.png" },
+      { id: 5, title: "05 / 05 ｜ 結尾：從高雄出發，把世界帶回餐桌", desc: "核心金句與關注號召", file: "slide_5.png", name: "WRoomie_05_Vision.png" }
+    ];
+
+    let currentSlide = 1;
+
+    function updateCarousel() {
+      const data = slideData[currentSlide - 1];
+      const img = document.getElementById('mainCarouselImg');
+      img.style.opacity = 0;
+      setTimeout(() => {
+        img.src = 'output/' + data.file;
+        img.style.opacity = 1;
+      }, 150);
+
+      document.getElementById('slideInfoTitle').textContent = data.title;
+      document.getElementById('slideInfoDesc').textContent = data.desc;
+      const downloadBtn = document.getElementById('slideInfoDownload');
+      downloadBtn.href = 'output/' + data.file;
+      downloadBtn.download = data.name;
+
+      const dots = document.querySelectorAll('.dot');
+      dots.forEach((dot, idx) => {
+        if (idx === currentSlide - 1) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+
+    function nextSlide() {
+      currentSlide = currentSlide >= 5 ? 1 : currentSlide + 1;
+      updateCarousel();
+    }
+
+    function prevSlide() {
+      currentSlide = currentSlide <= 1 ? 5 : currentSlide - 1;
+      updateCarousel();
+    }
+
+    function goToSlide(num) {
+      currentSlide = num;
+      updateCarousel();
+    }
+
+    function switchView(mode) {
+      const carouselView = document.getElementById('carousel-view');
+      const gridView = document.getElementById('grid-view');
+      const btnCarousel = document.getElementById('btn-show-carousel');
+      const btnGrid = document.getElementById('btn-show-grid');
+
+      if (mode === 'carousel') {
+        carouselView.style.display = 'flex';
+        gridView.style.display = 'none';
+        btnCarousel.classList.add('active');
+        btnGrid.classList.remove('active');
+      } else {
+        carouselView.style.display = 'none';
+        gridView.style.display = 'grid';
+        btnCarousel.classList.remove('active');
+        btnGrid.classList.add('active');
+      }
+    }
+
+    // Keyboard support
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>WRoomie - Slide 4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Noto+Serif+TC:wght@400;500;600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    width: 1080px;
+    height: 1350px;
+    background-color: #FAF7F2;
+    background-image: radial-gradient(rgba(188, 90, 54, 0.04) 1px, transparent 1px), radial-gradient(rgba(45, 39, 33, 0.03) 1px, #FAF7F2 1px);
+    background-size: 36px 36px;
+    background-position: 0 0, 18px 18px;
+    font-family: 'Noto Serif TC', serif;
+    color: #2D2721;
+    overflow: hidden;
+    position: relative;
+    padding: 68px 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .frame-border {
+    position: absolute;
+    top: 32px;
+    left: 32px;
+    right: 32px;
+    bottom: 32px;
+    border: 1px solid rgba(188, 90, 54, 0.22);
+    pointer-events: none;
+    z-index: 100;
+  }
+  .frame-border::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    border: 1px solid rgba(45, 39, 33, 0.08);
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(188, 90, 54, 0.18);
+    padding-bottom: 20px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .brand-logo {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .brand-logo .eng {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: #BC5A36;
+  }
+
+  .brand-logo .slash {
+    color: #D4C8B8;
+    font-weight: 300;
+    font-size: 20px;
+  }
+
+  .brand-logo .cht {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: #554D44;
+  }
+
+  .slide-tag {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: #8C8275;
+    text-transform: uppercase;
+    background: #F0EAE1;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid #E2D7C7;
+  }
+
+  .content-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+    padding: 20px 0;
+  }
+
+  .watermark-year {
+    position: absolute;
+    right: -20px;
+    top: 10px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 230px;
+    font-weight: 700;
+    color: rgba(188, 90, 54, 0.05);
+    line-height: 0.8;
+    user-select: none;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .year-badge-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+
+  .year-pill {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #FFFFFF;
+    background: #BC5A36;
+    padding: 6px 18px;
+    border-radius: 14px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 12px rgba(188, 90, 54, 0.25);
+  }
+
+  .year-en-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: #8C8275;
+    letter-spacing: 1px;
+  }
+
+  .slide-title {
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 1.35;
+    color: #241E18;
+    letter-spacing: 1.5px;
+    margin-bottom: 28px;
+  }
+
+  .slide-title span {
+    color: #BC5A36;
+  }
+
+  .grid-layout {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .text-column {
+    flex: 1.15;
+  }
+
+  .photo-column {
+    flex: 0.85;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .story-p {
+    font-size: 23px;
+    line-height: 1.95;
+    color: #453E36;
+    letter-spacing: 0.8px;
+    margin-bottom: 22px;
+    font-weight: 500;
+  }
+
+  .story-p strong {
+    color: #BC5A36;
+    font-weight: 700;
+  }
+
+  .chef-photo-card {
+    background: #FFFFFF;
+    padding: 14px 14px 18px 14px;
+    border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(45, 39, 33, 0.08);
+    border: 1px solid #E8E1D5;
+    width: 380px;
+  }
+
+  .chef-photo-frame {
+    width: 100%;
+    height: 480px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #EBE4D8;
+  }
+
+  .chef-photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .chef-caption {
+    font-size: 14px;
+    color: #7D7366;
+    text-align: center;
+    margin-top: 14px;
+    letter-spacing: 1px;
+    font-family: 'Noto Serif TC', serif;
+  }
+
+  .insight-box {
+    background: #FFFFFF;
+    border: 1px solid #E8E0D2;
+    border-left: 4px solid #BC5A36;
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin-top: 20px;
+    box-shadow: 0 4px 16px rgba(45, 39, 33, 0.03);
+  }
+
+  .insight-box p {
+    font-size: 21px;
+    line-height: 1.8;
+    color: #453E36;
+    margin-bottom: 0;
+  }
+
+  .insight-box strong {
+    color: #BC5A36;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(188, 90, 54, 0.18);
+    padding-top: 20px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .footer-left {
+    font-size: 14px;
+    color: #8C8275;
+    letter-spacing: 1.5px;
+    font-family: 'Noto Serif TC', serif;
+  }
+
+  .swipe-hint {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #BC5A36;
+    letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+  <div class="frame-border"></div>
+
+  <div class="header">
+    <div class="brand-logo">
+      <span class="eng">WRoomie</span>
+      <span class="slash">|</span>
+      <span class="cht">料理</span>
+    </div>
+    <div class="slide-tag">Chapter 03 · 04/05</div>
+  </div>
+
+  <div class="content-main">
+    <div class="watermark-year">2026</div>
+
+    <div class="year-badge-container">
+      <div class="year-pill">2026</div>
+      <div class="year-en-sub">Back to Kaohsiung · 回到高雄</div>
+    </div>
+
+    <h2 class="slide-title">放下習慣，<span>重新認識一座城市</span></h2>
+
+    <div class="grid-layout">
+      <div class="text-column">
+        <p class="story-p">
+          2026 年，我回到高雄。<br><br>
+          熟悉的是親愛的家人和朋友，<br>
+          陌生的卻是這裡完全不同於台北的食材、風土與飲食環境。
+        </p>
+
+        <div class="insight-box">
+          <p>
+            於是，我開始試著<strong>放下過去在台北習慣的做菜邏輯</strong>，<br>
+            重新認識一座城市，也重新認識料理。
+          </p>
+        </div>
+      </div>
+
+      <div class="photo-column">
+        <div class="chef-photo-card">
+          <div class="chef-photo-frame">
+            <img src="images/chef_joe.jpg" alt="Joe 專注料理">
+          </div>
+          <div class="chef-caption">專注於每道料理的溫度與細節</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">2026 · 高雄食材 × 風土探索</div>
+    <div class="swipe-hint">SWIPE ➔</div>
+  </div>
+</body>
+</html>

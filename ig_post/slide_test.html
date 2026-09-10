@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif+TC:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    width: 1080px;
+    height: 1350px;
+    background-color: #F8F5EE;
+    font-family: 'Noto Serif TC', serif;
+    color: #2D2721;
+    overflow: hidden;
+    position: relative;
+    padding: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* Decorative border frame */
+  .frame-border {
+    position: absolute;
+    top: 36px;
+    left: 36px;
+    right: 36px;
+    bottom: 36px;
+    border: 1px solid rgba(188, 90, 54, 0.25);
+    pointer-events: none;
+  }
+  .frame-border::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    border: 1px solid rgba(45, 39, 33, 0.08);
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #E2D9CC;
+    padding-bottom: 24px;
+  }
+
+  .brand-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: #BC5A36;
+    text-transform: uppercase;
+  }
+
+  .slide-tag {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: #8C8275;
+    text-transform: uppercase;
+  }
+
+  .content-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .sub-badge {
+    display: inline-block;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #BC5A36;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+
+  .hero-quote {
+    font-size: 56px;
+    font-weight: 900;
+    line-height: 1.35;
+    color: #241E18;
+    margin-bottom: 32px;
+    letter-spacing: 2px;
+  }
+
+  .hero-quote span {
+    color: #BC5A36;
+  }
+
+  .intro-text {
+    font-size: 24px;
+    line-height: 2;
+    color: #554D44;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 40px;
+  }
+
+  .author-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: #FFFFFF;
+    border: 1px solid #E8E0D2;
+    padding: 20px 28px;
+    border-radius: 12px;
+    width: fit-content;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  }
+
+  .author-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #BC5A36;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .author-info h4 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #241E18;
+    margin-bottom: 4px;
+  }
+
+  .author-info p {
+    font-size: 14px;
+    color: #8C8275;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #E2D9CC;
+    padding-top: 24px;
+  }
+
+  .footer-left {
+    font-size: 15px;
+    color: #8C8275;
+    letter-spacing: 1px;
+  }
+
+  .swipe-hint {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #BC5A36;
+    letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+  <div class="frame-border"></div>
+
+  <div class="header">
+    <div class="brand-logo">WRoomie <span>· 料理</span></div>
+    <div class="slide-tag">Brand Story 01/05</div>
+  </div>
+
+  <div class="content-main">
+    <div class="sub-badge">Taste The World · Culinary Journey</div>
+    <h1 class="hero-quote">「透過料理，<br><span>遊歷世界</span>。」</h1>
+    <p class="intro-text">
+      從台北深夜的後場廚房，到高雄陽光下的風土餐桌。<br>
+      這是一個文組大學生，用料理跨越城市與國界的故事。
+    </p>
+
+    <div class="author-card">
+      <div class="author-avatar">J</div>
+      <div class="author-info">
+        <h4>嗨，我是 Joe</h4>
+        <p>WRoomie Founder & Chef</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">WRoomie｜探索風味的下一站</div>
+    <div class="swipe-hint">SWIPE ➔</div>
+  </div>
+</body>
+</html>
