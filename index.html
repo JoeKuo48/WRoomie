@@ -1418,66 +1418,338 @@ body.edit-mode-active .edit-mode-banner {
 }
 
 @media (max-width: 768px) {
-  .nav-links {
-    display: none;
+  /* 導覽列極簡精緻化 */
+  .nav-container {
+    height: 60px;
+  }
+
+  .nav-brand {
+    gap: 6px;
+    align-items: center;
+  }
+
+  .brand-main {
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+  }
+
+  .brand-en {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+  }
+
+  .brand-sub {
+    display: none; /* 手機版隱藏副標，確保 Logo 單行保持完美水平排版 */
+  }
+
+  .nav-actions {
+    gap: 8px;
+  }
+
+  .nav-book-btn {
+    display: none; /* 手機版頂部隱藏過擠的預約按鈕，漢堡選單及下方 Hero 均有按鈕 */
+  }
+
+  .lang-toggle {
+    padding: 5px 10px;
+    font-size: 0.78rem;
+    border-radius: 16px;
   }
 
   .mobile-menu-toggle {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--color-sage-light);
+    color: var(--color-forest);
+    font-size: 1.25rem;
+    padding: 0;
+    border: 1px solid rgba(39, 77, 49, 0.2);
+  }
+
+  .nav-links {
+    display: none;
   }
 
   .nav-links.mobile-open {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 74px;
+    top: 60px;
     left: 0;
     right: 0;
     background: #F7F9F6;
-    padding: 24px;
+    padding: 20px 24px;
     border-bottom: 1px solid var(--border-subtle);
     box-shadow: var(--shadow-md);
+    gap: 16px;
+  }
+
+  /* 首屏 Hero 區塊縮放與舒適化（字體縮減，告別巨大壓迫感） */
+  .hero-section {
+    padding: 36px 0 50px;
+  }
+
+  .badge {
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+    padding: 4px 12px;
+    margin-bottom: 14px;
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.4;
   }
 
   .hero-title {
-    font-size: 2.2rem;
+    font-size: 1.75rem; /* 字體大小大幅舒適化，不再巨大突兀 */
+    line-height: 1.35;
+    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+  }
+
+  .hero-title span.accent::after {
+    bottom: 4px;
+    height: 8px;
   }
 
   .hero-subtitle {
-    font-size: 1.05rem;
+    font-size: 0.94rem; /* 舒適自然的大小 */
+    line-height: 1.65;
+    margin-bottom: 24px;
+    color: var(--color-text-secondary);
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .hero-ctas .btn {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 0.92rem;
+  }
+
+  /* 3 個特點標籤在手機改為直列排列，避免橫向擠成一團 */
+  .hero-features-bar {
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 20px;
+  }
+
+  .hero-feature-item {
+    font-size: 0.85rem;
+  }
+
+  /* Hero 圖片與浮動徽章 */
+  .hero-visual-card {
+    margin-top: 10px;
   }
 
   .hero-main-photo-frame img {
-    height: 340px;
+    height: 260px;
+    border-radius: 14px;
   }
 
-  .chef-photo-inner img {
-    height: 380px;
+  .hero-photo-tag {
+    bottom: 12px;
+    left: 12px;
+    padding: 8px 12px;
+    border-radius: 8px;
   }
 
+  .hero-photo-tag h4 {
+    font-size: 0.85rem;
+  }
+
+  .hero-photo-tag p {
+    font-size: 0.75rem;
+  }
+
+  .hero-floating-badge {
+    position: static;
+    margin-top: 14px;
+    width: 100%;
+    padding: 12px 16px;
+    animation: none;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .floating-badge-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 1.1rem;
+  }
+
+  .floating-badge-text .title {
+    font-size: 0.85rem;
+  }
+
+  .floating-badge-text .subtitle {
+    font-size: 0.75rem;
+  }
+
+  /* 區塊共用縮放 */
   .section {
-    padding: 64px 0;
+    padding: 56px 0;
+  }
+
+  .section-header {
+    margin-bottom: 36px;
   }
 
   .section-title {
-    font-size: 1.95rem;
+    font-size: 1.65rem;
+    line-height: 1.35;
+    margin-bottom: 10px;
   }
 
-  .cta-title {
-    font-size: 2.1rem;
+  .section-subtitle {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  /* 主廚介紹區塊手機版 */
+  .chef-grid {
+    gap: 32px;
+  }
+
+  .chef-photo-inner img {
+    height: 320px;
+  }
+
+  .chef-section-title {
+    font-size: 1.55rem;
+  }
+
+  .chef-card-item {
+    padding: 16px 18px;
+  }
+
+  .chef-card-item .item-title {
+    font-size: 0.98rem;
+  }
+
+  .chef-card-item p {
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+
+  .chef-quote-box {
+    padding: 20px 22px;
+  }
+
+  .chef-quote-box .quote-p {
+    font-size: 0.94rem;
+    line-height: 1.65;
+  }
+
+  .chef-quote-box .quote-author {
+    font-size: 1.1rem;
+  }
+
+  /* 食旅體驗卡片手機版 */
+  .experience-card .card-body {
+    padding: 20px 18px 24px;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+  }
+
+  .card-en-title {
+    font-size: 0.92rem;
+    margin-bottom: 12px;
+  }
+
+  .card-description {
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+
+  .card-timeline {
+    padding: 14px;
+  }
+
+  .timeline-item {
+    font-size: 0.8rem;
+    gap: 8px;
+  }
+
+  .timeline-time {
+    font-size: 0.78rem;
+  }
+
+  /* 底部 CTA 預約區塊手機版 */
+  .cta-section {
+    padding: 64px 0;
   }
 
   .cta-box {
-    padding: 42px 24px;
+    padding: 36px 20px;
+    border-radius: 18px;
   }
 
+  .cta-title {
+    font-size: 1.75rem;
+    line-height: 1.35;
+    margin-bottom: 14px;
+  }
+
+  .cta-subtitle {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    margin-bottom: 28px;
+  }
+
+  .cta-buttons-group {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cta-buttons-group .btn {
+    width: 100%;
+    padding: 13px 20px;
+    font-size: 0.95rem;
+  }
+
+  /* 頁尾 */
+  .site-footer {
+    padding: 48px 0 28px;
+  }
+
+  .footer-grid {
+    gap: 28px;
+    margin-bottom: 32px;
+  }
+
+  /* 浮動編輯工具列手機版 */
   .live-editor-bar {
-    bottom: 16px;
-    right: 16px;
-    left: 16px;
+    bottom: 12px;
+    right: 12px;
+    left: 12px;
+    padding: 8px 12px;
     border-radius: 16px;
     justify-content: space-between;
     flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .editor-toggle-btn {
+    padding: 6px 12px;
+    font-size: 0.78rem;
+  }
+
+  .editor-action-btn {
+    padding: 5px 8px;
+    font-size: 0.72rem;
   }
 }
 
@@ -1513,7 +1785,7 @@ body.edit-mode-active .edit-mode-banner {
         <button class="lang-toggle" id="langToggleBtn" title="切換語言 / Switch Language">
           🌐 <span>EN / 英文</span>
         </button>
-        <a href="#booking" class="btn btn-primary" style="padding: 9px 18px; font-size: 0.88rem;" data-book-action="general" data-edit="nav-book">
+        <a href="#booking" class="btn btn-primary nav-book-btn" style="padding: 9px 18px; font-size: 0.88rem;" data-book-action="general" data-edit="nav-book">
           立即預約
         </a>
         <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">
@@ -2036,5 +2308,6 @@ body.edit-mode-active .edit-mode-banner {
   <script src="app.js?v=green"></script>
 </body>
 </html>
+
 
 
