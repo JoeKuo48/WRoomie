@@ -581,10 +581,18 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==========================================================================
-// 管理員專屬權限控制 (Admin Access Control)
-// 確保一般訪客完全看不到編輯按鈕，只有您驗證通過後才能開啟編輯
+// 管理員專屬權限控制 (Admin Access Control with SHA-256 & Masked Modal)
+// 徹底隱藏密碼，無任何明文洩漏，一般訪客完全無法看到密碼或編輯按鈕
 // ==========================================================================
-const ADMIN_PASSWORD = 'wroomie'; // 專屬密碼，可隨時更改
+// 初始不可逆 SHA-256 雜湊值（對應預設密碼）
+const DEFAULT_PWD_HASH = '872f57d1297037b6d03259d8efa6dbdc16a8213fed29f6e98d48e5dfaaa80ac5';
+
+// 計算字串的 SHA-256 雜湊
+async function sha256(str) {
+  const buffer = new TextEncoder().encode(str);
+  const digest = await crypto.subtle.digest('SHA-256', buffer);
+  return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
 
 function checkAdminAuth() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -594,19 +602,120 @@ function checkAdminAuth() {
   if (isSavedAdmin) {
     unlockAdmin();
   } else if (hasAdminQuery) {
-    promptAdminPassword();
+    openAdminLoginModal();
   }
 }
 
-window.promptAdminPassword = function() {
-  const input = prompt('🔐 請輸入微倫米管理員密碼（預設為 wroomie）：', '');
-  if (input === ADMIN_PASSWORD) {
+// 打開密碼登入彈窗（採用黑點遮罩，無任何明文洩漏）
+window.openAdminLoginModal = function() {
+  const modal = document.getElementById('adminLoginModal');
+  const input = document.getElementById('adminPwdInput');
+  const err = document.getElementById('adminLoginError');
+  if (modal) {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    if (err) err.style.display = 'none';
+    if (input) {
+      input.value = '';
+      setTimeout(() => input.focus(), 150);
+    }
+  }
+};
+
+window.closeAdminLoginModal = function() {
+  const modal = document.getElementById('adminLoginModal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+};
+
+// 驗證密碼送出
+window.handleAdminLoginSubmit = async function(e) {
+  if (e) e.preventDefault();
+  const input = document.getElementById('adminPwdInput');
+  const err = document.getElementById('adminLoginError');
+  if (!input) return;
+
+  const enteredPwd = input.value.trim();
+  const hashedInput = await sha256(enteredPwd);
+  const targetHash = localStorage.getItem('wroomie_admin_custom_hash') || DEFAULT_PWD_HASH;
+
+  if (hashedInput === targetHash) {
     localStorage.setItem('wroomie_admin_auth', 'true');
+    closeAdminLoginModal();
     unlockAdmin();
     alert('✅ 驗證成功！已為您解鎖專屬文字編輯工具列。');
-  } else if (input !== null) {
-    alert('❌ 密碼不正確，僅供主廚管理員使用。');
+  } else {
+    if (err) err.style.display = 'block';
+    input.select();
   }
+};
+
+// 切換密碼顯示/隱藏
+window.togglePasswordVisibility = function(inputId, btn) {
+  const input = document.getElementById(inputId);
+  if (!input) return;
+  if (input.type === 'password') {
+    input.type = 'text';
+    btn.textContent = '🙈';
+  } else {
+    input.type = 'password';
+    btn.textContent = '👁️';
+  }
+};
+
+// 打開變更密碼彈窗（僅自己知道）
+window.openAdminChangePwdModal = function() {
+  const modal = document.getElementById('adminChangePwdModal');
+  const p1 = document.getElementById('newPwdInput');
+  const p2 = document.getElementById('confirmPwdInput');
+  const err = document.getElementById('adminChangePwdError');
+  if (modal) {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    if (p1) p1.value = '';
+    if (p2) p2.value = '';
+    if (err) err.style.display = 'none';
+    setTimeout(() => p1 && p1.focus(), 150);
+  }
+};
+
+window.closeAdminChangePwdModal = function() {
+  const modal = document.getElementById('adminChangePwdModal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+};
+
+// 儲存新密碼（直接以 SHA-256 儲存在個人電腦，代碼中無人知曉）
+window.handleAdminChangePwdSubmit = async function(e) {
+  if (e) e.preventDefault();
+  const p1 = document.getElementById('newPwdInput')?.value || '';
+  const p2 = document.getElementById('confirmPwdInput')?.value || '';
+  const err = document.getElementById('adminChangePwdError');
+
+  if (p1.length < 4) {
+    if (err) {
+      err.textContent = '密碼長度請至少 4 碼以上';
+      err.style.display = 'block';
+    }
+    return;
+  }
+
+  if (p1 !== p2) {
+    if (err) {
+      err.textContent = '兩次輸入的新密碼不一致，請再次確認';
+      err.style.display = 'block';
+    }
+    return;
+  }
+
+  const newHash = await sha256(p1.trim());
+  localStorage.setItem('wroomie_admin_custom_hash', newHash);
+  closeAdminChangePwdModal();
+  alert('🎉 專屬新密碼已成功設定！此密碼僅保存在您的設備中，任何人都無法看見。');
 };
 
 function unlockAdmin() {
@@ -621,7 +730,7 @@ function lockAdmin() {
   setEditMode(false);
   const bar = document.getElementById('liveEditorBar');
   if (bar) bar.style.display = 'none';
-  alert('🔒 已退出管理模式，切換為一般訪客視角！');
+  alert('🔒 已退出管理模式，目前顯示一般訪客正常畫面！');
 }
 
 // 快捷鍵支援：隨時按下 Ctrl + Shift + E 即可呼叫密碼輸入
@@ -633,7 +742,7 @@ window.addEventListener('keydown', (e) => {
         lockAdmin();
       }
     } else {
-      window.promptAdminPassword();
+      openAdminLoginModal();
     }
   }
 });

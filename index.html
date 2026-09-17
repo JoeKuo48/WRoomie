@@ -2191,7 +2191,7 @@ body.edit-mode-active .edit-mode-banner {
           © 2026 微倫米 WRoomie. All rights reserved. 用料理在餐桌上漫遊世界。
         </p>
         <div style="font-size: 0.8rem; color: #756D65;">
-          Made with warmth in Kaohsiung, Taiwan <a href="javascript:void(0)" onclick="promptAdminPassword()" style="opacity: 0.35; text-decoration: none; margin-left: 6px;" title="管理員專屬入口">🔒</a></div>
+          Made with warmth in Kaohsiung, Taiwan <a href="javascript:void(0)" onclick="openAdminLoginModal()" style="opacity: 0.35; text-decoration: none; margin-left: 6px;" title="管理員專屬入口">🔒</a></div>
       </div>
     </div>
   </footer>
@@ -2285,6 +2285,58 @@ body.edit-mode-active .edit-mode-banner {
   <!-- ==========================================================================
        全站文字即時修改浮動工具列 (Live In-Place Edit Floating Bar)
        ========================================================================== -->
+    <!-- ==========================================================================
+       管理員專屬密碼驗證與設定彈窗 (黑點遮罩，無任何明文顯示)
+       ========================================================================== -->
+  <div class="modal-overlay" id="adminLoginModal">
+    <div class="modal-card" style="max-width: 400px; padding: 32px 28px; text-align: center;">
+      <button class="modal-close-btn" onclick="closeAdminLoginModal()">×</button>
+      <div style="font-size: 2.2rem; margin-bottom: 8px;">🔒</div>
+      <h3 style="font-family: var(--font-serif); font-size: 1.45rem; color: var(--color-container-dark); margin-bottom: 6px;">管理員身分驗證</h3>
+      <p style="font-size: 0.86rem; color: var(--color-text-secondary); margin-bottom: 20px;">請輸入您的專屬管理密碼以開啟編輯模式</p>
+      
+      <form id="adminLoginForm" onsubmit="handleAdminLoginSubmit(event)">
+        <div style="position: relative; margin-bottom: 14px;">
+          <input type="password" id="adminPwdInput" class="form-input" placeholder="請輸入管理密碼" style="padding-right: 42px; font-size: 1.05rem; letter-spacing: 2px;" required autocomplete="current-password">
+          <button type="button" onclick="togglePasswordVisibility('adminPwdInput', this)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 1.1rem; cursor: pointer; color: var(--color-sage-muted); padding: 4px;" title="顯示/隱藏密碼">👁️</button>
+        </div>
+        <div id="adminLoginError" style="display: none; color: #E74C3C; font-size: 0.85rem; margin-bottom: 14px; font-weight: 700;">密碼錯誤，請重新輸入</div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 0.95rem;">
+          解鎖管理模式 ➔
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="adminChangePwdModal">
+    <div class="modal-card" style="max-width: 420px; padding: 32px 28px;">
+      <button class="modal-close-btn" onclick="closeAdminChangePwdModal()">×</button>
+      <div style="text-align: center; margin-bottom: 20px;">
+        <div style="font-size: 2rem; margin-bottom: 8px;">🔑</div>
+        <h3 style="font-family: var(--font-serif); font-size: 1.4rem; color: var(--color-container-dark); margin-bottom: 6px;">設定您的專屬新密碼</h3>
+        <p style="font-size: 0.84rem; color: var(--color-text-secondary);">新密碼將直接加密儲存於本機，絕不對外公開</p>
+      </div>
+      
+      <form id="adminChangePwdForm" onsubmit="handleAdminChangePwdSubmit(event)">
+        <div class="form-group">
+          <label for="newPwdInput" style="font-size: 0.86rem;">輸入新密碼 (至少 4 碼)</label>
+          <div style="position: relative;">
+            <input type="password" id="newPwdInput" class="form-input" placeholder="例如：自訂私密英文或數字" required style="padding-right: 42px;">
+            <button type="button" onclick="togglePasswordVisibility('newPwdInput', this)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 1.1rem; cursor: pointer; color: var(--color-sage-muted); padding: 4px;">👁️</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="confirmPwdInput" style="font-size: 0.86rem;">再次確認新密碼</label>
+          <input type="password" id="confirmPwdInput" class="form-input" placeholder="請再次輸入相同新密碼" required>
+        </div>
+        <div id="adminChangePwdError" style="display: none; color: #E74C3C; font-size: 0.85rem; margin-bottom: 14px; text-align: center; font-weight: 700;">兩次輸入的新密碼不一致</div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 0.95rem;">
+          確認儲存新密碼 ➔
+        </button>
+      </form>
+    </div>
+  </div>
+
   <div class="live-editor-bar" id="liveEditorBar">
     <button class="editor-toggle-btn" id="editorToggleBtn" title="點擊切換編輯模式，可在網頁上直接打字修改文字">
       <span>✏️ 開啟文字編輯模式</span>
@@ -2299,6 +2351,7 @@ body.edit-mode-active .edit-mode-banner {
       <button class="editor-action-btn" id="resetDefaultsBtn" title="恢復官方原始預設文字">
         🔄 重設
       </button>
+      <button class="editor-action-btn" onclick="openAdminChangePwdModal()" title="設定只有您知道的專屬新密碼">🔑 換密碼</button>
       <button class="editor-action-btn" id="logoutAdminBtn" style="background: rgba(231, 76, 60, 0.25); border-color: rgba(231, 76, 60, 0.4);" title="退出管理模式並隱藏工具列">🔒 退出管理</button>
     </div>
     <span class="editor-status" id="editorStatus">✓ 已自動儲存</span>
@@ -2308,6 +2361,7 @@ body.edit-mode-active .edit-mode-banner {
   <script src="app.js?v=green"></script>
 </body>
 </html>
+
 
 
 
